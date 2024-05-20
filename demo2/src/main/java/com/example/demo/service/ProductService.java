@@ -14,5 +14,5 @@ public interface ProductService {
     Product getProductById(int id);
     List<ProductDto> findProducts(Specification<Product> spec);
     List<ProductDto> hasCategoryName(Specification<Product> spec);
-    List<ProductDto> getList(String s);
+    List<ProductDto> getList();
 }

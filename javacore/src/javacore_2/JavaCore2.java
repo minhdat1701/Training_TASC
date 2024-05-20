@@ -5,8 +5,7 @@ public class JavaCore2 {
         //1. Đặc điểm của String
         // Khởi tạo một đối tượng String
         String str1 = "Hello";
-
-        // Khởi tạo một đối tượng String mới thông qua phương thức concat()
+        // Tạo một đối tượng String mới thông qua phương thức concat()
         String str2 = str1.concat(" World");
         // In ra giá trị của str1 và str2
         System.out.println("str1: " + str1); // str1: Hello

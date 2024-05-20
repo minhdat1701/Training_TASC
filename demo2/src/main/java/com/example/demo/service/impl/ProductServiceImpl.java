@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product, ProductDto.class))
                 .collect(Collectors.toList());
     }
-    public List<ProductDto> getList(String s) {
-        return productJdbcRepository.getProductList(s);
+    public List<ProductDto> getList() {
+        return productJdbcRepository.getProductList();
     }
 }

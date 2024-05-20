@@ -28,15 +28,19 @@ public class Main {
                     break;
                 case 2:
                     addCustomer();
+                    saveCustomers();
                     break;
                 case 3:
                     searchCustomerByPhoneNumber();
+                    saveCustomers();
                     break;
                 case 4:
                     updateCustomer();
+                    saveCustomers();
                     break;
                 case 5:
                     deleteCustomer();
+                    saveCustomers();
                     break;
                 case 0:
                     saveCustomers();
@@ -186,7 +190,7 @@ public class Main {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             customers = (List<Customer>) inputStream.readObject();
         } catch (FileNotFoundException e) {
-            // File doesn't exist yet, ignore
+            System.out.println("Lỗi: " + e.getMessage());
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Lỗi: " + e.getMessage());
         }
@@ -201,7 +205,6 @@ public class Main {
     }
     private static boolean isValidName(String name) {
         return name != null && !name.isEmpty() && name.matches("[a-zA-Z]");
-        // Kiểm tra không null và tên chỉ chứa các ký tự từ a-z và A-Z (không chấp nhận ký tự đặc biệt)
     }
     private static boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{10}");

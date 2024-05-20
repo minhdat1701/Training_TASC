@@ -59,14 +59,14 @@ public class ProductController {
         Specification<Product> spec = Specification.where(ProductSpec.hasCategoryName(categoryName));
         return productService.hasCategoryName(spec);
     }
-    @GetMapping("/list")
-    public List<ProductDto> getProductListByName(@RequestParam("name")String name) {
-        String sql = "SELECT * FROM products where name LIKE ?";
-        List<ProductDto> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ProductDto.class), "%" + name + "%");
-        return list.stream().toList();
-    }
+//    @GetMapping("/list")
+//    public List<ProductDto> getProductListByName(@RequestParam("name")String name) {
+//        String sql = "SELECT * FROM products where name LIKE ?";
+//        List<ProductDto> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ProductDto.class), "%" + name + "%");
+//        return list.stream().toList();
+//    }
     @GetMapping("/get")
-    public List<ProductDto> getComic(@RequestParam("s") String s) {
-        return productService.getList(s);
+    public List<ProductDto> getComic() {
+        return productService.getList();
     }
 }

@@ -4,6 +4,8 @@ import com.example.demo.dto.ProductDto;
 import com.example.demo.mapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -14,10 +16,17 @@ import java.util.List;
 public class ProductJdbcRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+//    public List<ProductDto> getProductList() {
+//        String sql = "SELECT * FROM products WHERE name LIKE ?";
+//        List<ProductDto> list = jdbcTemplate.query(sql, new Object[]{"%Truyen%"}, new ProductRowMapper());
+//        return list;
+//    }
+    public List<ProductDto> getProductList() {
+        String sql = "SELECT * FROM products WHERE name LIKE :name";
+        MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("name", "%Truyen%");
 
-    public List<ProductDto> getProductList(String s) {
-        String sql = "SELECT * FROM products WHERE name LIKE ?";
-        List<ProductDto> list = jdbcTemplate.query(sql, new Object[]{s}, new ProductRowMapper());
-        return list;
+        return namedParameterJdbcTemplate.query(sql, parameters, new ProductRowMapper());
     }
 }
